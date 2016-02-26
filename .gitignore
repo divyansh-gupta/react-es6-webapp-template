@@ -35,3 +35,8 @@ jspm_packages
 
 # API Secret Files
 stormpath.yml
+
+# Build files
+.bash_history
+.cache/
+.vagrant/

@@ -23,9 +23,9 @@ app.get('*', function (req, res) {
 });
 
 function beginServer() {
-  app.listen(3000, 'localhost', function (err) {
+  app.listen(3000, function (err) {
     if (err) return console.error(err);
-    console.log('listening at http://localhost:3000');
+    console.log('listening at http://127.0.0.1:8080');
   });
 }
 
