@@ -6,7 +6,7 @@ import ReactStormpath, { Router, LoginRoute, LogoutRoute, AuthenticatedRoute } f
 import MasterPage from './pages/MasterPage';
 import IndexPage from './pages/IndexPage';
 
-ReactDOM.render(
+var instance = ReactDOM.render(
   <Router history={createHashHistory({ queryKey: false })}>
     <Route path='/' component={MasterPage}>
       <IndexRoute component={IndexPage} />
@@ -16,3 +16,12 @@ ReactDOM.render(
 );
 
 ReactStormpath.init();
+
+if (module.hot) {
+  require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
+    getRootInstances: function () {
+      // Help React Hot Loader figure out the root component instances on the page:
+      return [rootInstance];
+    }
+  });
+}
