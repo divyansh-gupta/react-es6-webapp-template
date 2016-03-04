@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/precise64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -27,6 +27,8 @@ Vagrant.configure(2) do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
     config.vm.network "private_network", ip: "127.0.0.1"
+    config.vm.hostname = "divy.app.io"
+    config.ssh.forward_agent = true
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -37,7 +39,7 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-   config.vm.synced_folder ".", "/home/vagrant"
+   config.vm.synced_folder ".", "/home/vagrant/my-react-app"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -65,8 +67,9 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
     config.vm.provision "shell", inline: <<-SHELL
-	sudo apt-get -qq update
-	sudo apt-get -y -qq install build-essential nodejs npm
-	sudo ln -s "$(which nodejs)" /usr/bin/node
-    SHELL
+	   sudo apt-get -qq update
+     sudo apt-get install curl
+     curl --silent --location https://deb.nodesource.com/setup_5.x | sudo bash -
+     sudo apt-get -y install nodejs
+     SHELL
 end

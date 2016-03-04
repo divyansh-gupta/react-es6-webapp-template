@@ -40,3 +40,4 @@ stormpath.yml
 .bash_history
 .cache/
 .vagrant/
+.otto/

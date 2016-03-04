@@ -1,0 +1,18 @@
+application {
+    name = "react-es6-website-template"
+    type = "custom"
+}
+
+project {
+    name = "react-es6-website-template"
+    infrastructure = "production"
+}
+
+infrastructure "production" {
+    type = "aws"
+    flavor = "simple"
+}
+
+customization {
+    dev_vagrantfile = "./Vagrantfile"
+}
