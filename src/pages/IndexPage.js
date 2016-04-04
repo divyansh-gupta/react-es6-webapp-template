@@ -1,6 +1,5 @@
 import { Link } from 'react-router';
 import React, { PropTypes } from 'react';
-import { LoginLink } from 'react-stormpath';
 
 export default class IndexPage extends React.Component {
   render() {
@@ -15,7 +14,7 @@ export default class IndexPage extends React.Component {
           <p>Ready to begin?</p>
           <ol className="lead">
             <li><Link to="/register">Registration</Link></li>
-            <li><LoginLink /></li>
+            <li>Insert Login Link here</li>
             <li><Link to="/profile">Custom Profile Data</Link></li>
           </ol>
         </div>

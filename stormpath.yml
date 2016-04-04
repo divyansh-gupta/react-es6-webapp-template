@@ -1,6 +1,0 @@
-client:
-  apiKey:
-    id: << ID HERE >>
-    secret: << SECRET HERE >>
-application:
-  href: https://api.stormpath.com/v1/applications/<< APP ID HERE >>

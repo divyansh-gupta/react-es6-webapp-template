@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { LoginLink, LogoutLink, Authenticated, NotAuthenticated } from 'react-stormpath';
 
 export default class Header extends React.Component {
   render() {

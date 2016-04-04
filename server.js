@@ -1,6 +1,5 @@
 var path = require('path');
 var express = require('express');
-var stormpath = require('express-stormpath');
 var webpack = require('webpack');
 var config = require('./webpack.config');
 
@@ -11,8 +10,6 @@ app.use(require('webpack-dev-middleware')(compiler,  {
   noInfo: true,
   publicPath: config.output.publicPath
 }));
-
-stormpath.init(app, { website: true });
 
 app.get('/css/bootstrap.min.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'build/css/bootstrap.min.css'));
@@ -29,4 +26,4 @@ function beginServer() {
   });
 }
 
-app.on('stormpath.ready', beginServer);
+beginServer();
