@@ -1,22 +1,39 @@
-var path = require('path');
-var webpack = require('webpack');
+'use strict'
+
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: [
-    './src/app.js'
-  ],
-  devtool: 'eval-source-map',
+  entry: {
+    reactapp: [
+      './src/app.js'
+    ]
+  },
+  devtool: 'cheap-module-source-map',
   output: {
-    path: __dirname,
-    filename: 'app.js',
-    publicPath: '/js/'
+    path: path.join(__dirname, 'build'),
+    filename: 'index.js',
+    publicPath: '/assets/'
   },
   module: {
     loaders: [{
-      test: /\.js$/,
-      loaders: ['babel?presets[]=react,presets[]=es2015,presets[]=stage-0'],
+      test: /\.json?$/,
+      loader: 'json-loader'
+    }, {
+      test: /\.jsx?$/,
+      loader: 'babel',
       exclude: /node_modules/,
-      include: path.join(__dirname, 'src')
+      include: [
+        path.join(__dirname, 'app'),
+        path.join(__dirname, 'lib')
+      ]
+    }, {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['babel-loader']
+    }, {
+      test: /\/css$/,
+      loader: 'style-loader!css-loader'
     }]
   }
 };

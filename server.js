@@ -3,8 +3,6 @@ var express = require('express');
 var webpack = require('webpack');
 var config = require('./webpack.config');
 
-require('./src/lib/mongoose');
-
 var app = express();
 var compiler = webpack(config);
 
