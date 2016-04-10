@@ -25,6 +25,7 @@ module.exports = {
       exclude: /node_modules/,
       include: [
         path.join(__dirname, 'app'),
+        path.join(__dirname, 'server'),
         path.join(__dirname, 'lib')
       ]
     }, {
