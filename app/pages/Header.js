@@ -9,6 +9,7 @@ export default class Header extends React.Component {
           <div id="navbar-collapse" className="collapse navbar-collapse">
             <ul className="nav navbar-nav">
               <li><Link to="/">Home</Link></li>
+              {this.renderUserControls()}
             </ul>
             <ul className="nav navbar-nav navbar-right">
             </ul>
@@ -16,5 +17,17 @@ export default class Header extends React.Component {
         </div>
       </nav>
     );
+  }
+
+  renderUserControls = () => {
+    return this.props.user ? this.renderLoggedInUser() : this.renderloggedOutUser();
+  }
+
+  renderLoggedInUser = () => {
+    return (<li><Link to="/profile">Profile</Link></li>);
+  }
+
+  renderloggedOutUser = () => {
+     return (<li><Link to="/login">Login</Link></li>);
   }
 }

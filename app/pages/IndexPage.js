@@ -13,8 +13,8 @@ export default class IndexPage extends React.Component {
           </p>
           <p>Ready to begin?</p>
           <ol className="lead">
+            <li><Link to="/login">Login</Link></li>
             <li><Link to="/register">Registration</Link></li>
-            <li>Insert Login Link here</li>
             <li><Link to="/profile">Custom Profile Data</Link></li>
           </ol>
         </div>

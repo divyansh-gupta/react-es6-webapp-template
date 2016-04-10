@@ -6,7 +6,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     reactapp: [
-      './src/app.js'
+      './app/app.js'
     ]
   },
   devtool: 'cheap-module-source-map',
@@ -32,7 +32,7 @@ module.exports = {
         exclude: /node_modules/,
         loaders: ['babel-loader']
     }, {
-      test: /\/css$/,
+      test: /\/.css$/,
       loader: 'style-loader!css-loader'
     }]
   }
