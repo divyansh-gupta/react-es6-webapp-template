@@ -5,7 +5,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 function requestLogin(creds) {
   return {
     type: LOGIN_START,
-    isFetching: true,
+    loading: true,
     isAuthenticated: false,
     creds
   }
@@ -14,7 +14,7 @@ function requestLogin(creds) {
 function receiveLogin(user) {
   return {
     type: LOGIN_SUCCESS,
-    isFetching: false,
+    loading: false,
     isAuthenticated: true,
     user
   }
@@ -23,8 +23,16 @@ function receiveLogin(user) {
 function loginError(message) {
   return {
     type: LOGIN_FAILURE,
-    isFetching: false,
+    loading: false,
     isAuthenticated: false,
     message
   }
+}
+
+function loginUser(creds) {
+  const config = {
+    method: 'POST',
+    headers: {  }
+  }
+
 }

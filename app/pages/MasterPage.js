@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 import DocumentTitle from 'react-document-title';
-import Header from './Header';
+
+import Header from '../components/Header';
 
 export default class MasterPage extends React.Component {
+
   render() {
     return (
       <DocumentTitle title='My React App'>
@@ -14,4 +17,8 @@ export default class MasterPage extends React.Component {
       </DocumentTitle>
     );
   }
+}
+
+MasterPage.propTypes = {
+  isAuthenticated: React.PropTypes.bool.isRequired
 }

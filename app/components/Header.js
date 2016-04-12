@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 export default class Header extends React.Component {
+
   render() {
     return (
       <nav className="navbar navbar-default navbar-static-top">
@@ -20,7 +22,7 @@ export default class Header extends React.Component {
   }
 
   renderUserControls = () => {
-    return this.props.user ? this.renderLoggedInUser() : this.renderloggedOutUser();
+    return this.props.isAuthenticated ? this.renderLoggedInUser() : this.renderloggedOutUser();
   }
 
   renderLoggedInUser = () => {
@@ -30,4 +32,8 @@ export default class Header extends React.Component {
   renderloggedOutUser = () => {
      return (<li><Link to="/login">Login</Link></li>);
   }
+}
+
+Header.propTypes = {
+  isAuthenticated: React.PropTypes.bool.isRequired
 }

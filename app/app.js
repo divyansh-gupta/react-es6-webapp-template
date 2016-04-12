@@ -1,3 +1,6 @@
+global.Promise = require('bluebird');
+global.fetch = require('isomorphic-fetch');
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';

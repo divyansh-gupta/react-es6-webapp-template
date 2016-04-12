@@ -1,18 +1,22 @@
-var path = require('path');
-var express = require('express');
-var webpack = require('webpack');
-var config = require('./webpack.config');
+'use strict';
 
-var app = express();
-var compiler = webpack(config);
+require('babel-register');
 
-app.post('/userAuth/login', (req, res) => {
-  
-});
+const path = require('path');
+const express = require('express');
+const webpack = require('webpack');
+const passport = require('passport');
+const FacebookStrategy = require('passport-facebook');
 
-app.use(require('webpack-dev-middleware')(compiler, {
+const webpackConfig = require('./webpack.config');
+const config = require('./server/config');
+const User = require('./server/models/User');
+
+const app = express();
+
+app.use(require('webpack-dev-middleware')(webpack(webpackConfig), {
   noInfo: true,
-  publicPath: config.output.publicPath
+  publicPath: webpackConfig.output.publicPath
 }));
 
 app.get('/css/bootstrap.min.css', (req, res) => {
@@ -21,6 +25,23 @@ app.get('/css/bootstrap.min.css', (req, res) => {
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build/index.html'));
+});
+
+passport.use(new FacebookStrategy({
+    clientID: config.facebook.clientID,
+    clientSecret: config.facebook.clientSecret,
+    callbackURL: config.facebook.callbackUrl
+  }, (accessToken, refreshToken, profile, cb) => {
+    User.findOrCreate({ facebookId: profile.id }, (err, user) => {
+      return cb(err, user);
+    });
+  }
+), { session: false }); // Session turned off to allow for custom JWT creation
+
+passport.authenticate('facebook');
+
+app.post('/auth/login', (req, res) => {
+  
 });
 
 function beginServer() {
